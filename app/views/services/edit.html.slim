@@ -1,0 +1,6 @@
+
+
+= render 'form_edit'
+
+= link_to 'Show', dashboard_service_path(@service.service_uuid, account_uuid: @account_uuid)
+= link_to 'Back', dashboard_services_path(account_uuid: @account_uuid)

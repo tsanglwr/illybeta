@@ -1,0 +1,45 @@
+div.row
+  div.col-xs-12
+    h1.page-header  
+      | User Profiles
+    ol.breadcrumb
+      li.active
+        i.fa.fa-th-list>
+        | User Profiles
+
+p
+  = link_to 'New User profile', new_admin_user_path, :class => "btn btn-primary"
+
+- if !@users.any?
+  div.alert.alert-warning
+    | There are no user profiles. 
+- else
+
+  div.row
+    div.col-xs-12
+      table.table.table-bordered.table-striped
+        thead
+          tr
+            th Name
+            th # Videos
+            th Status
+            th colspan="2"
+          tbody
+            - @users.each do |user| 
+              tr
+                td
+                  = user_full_name(user)
+                td
+                  = user.get_video_count
+                td
+                  - if user && user.get_status
+                    <span class="text-#{user.get_status[1]}">
+                      = user.get_status[0]
+                    </span>
+                td
+                  = link_to 'Manage', edit_admin_user_path(user)
+                
+
+                td
+                  = link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure you want to delete this profile and all its videos?' }
+

@@ -1,0 +1,15 @@
+h1
+  | Services
+
+= link_to 'New service', new_dashboard_service_path(account_uuid: @account_uuid)
+
+
+- @services.each do |service|
+  h2
+    = service.name
+    =>
+    | Service
+    =>
+    | (
+    = link_to 'View', dashboard_service_path(service.service_uuid, account_uuid: @account_uuid)
+    | )

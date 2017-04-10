@@ -1,0 +1,138 @@
+
+
+$bgDefault      : #ffffff;
+$bgHighlight    : #ecf0f1;
+$colDefault     : #333333;
+$colHighlight   : #000000;
+$dropDown       : true;
+.navbar-left {
+    margin: 0px;
+}
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li > a {
+            color: $colDefault;
+            &:hover,  &:focus {
+              color: $colHighlight;
+              background-color: $bgHighlight; }}
+          .divider {
+            background-color: $bgHighlight;}}}
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+
+// Fix the navbar brand image to fit in perfectly
+.navbar-brand {
+    max-height: 50px;
+    overflow: visible;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar-left {
+    margin: 0px;
+}
+.navbar-right {
+	margin: 0px;
+}
+// http://stackoverflow.com/questions/23700941/bootstrap-full-responsive-navbar-with-logo-or-brand-name-text
+ 
+/** http://www.bootply.com/mQh8DyRfWY **/
+.center-navbar-brand {
+  float: none;
+  }
+
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    margin: auto;
+    max-height: 50px;
+    overflow: visible;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+@media (max-width: 767px) { 
+ 
+    .navbar-brand {
+        padding: 0;        
+    }
+
+    .navbar-brand img {
+        margin-top: 5px;
+    }
+
+   .navbar-center
+    {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 40px;
+        margin: auto;
+    }
+
+}
+ 
+.navbar-nav>li, .navbar-nav {
+float: left !important;
+}
+ 
+
+.navbar-right {
+float: right !important;
+}

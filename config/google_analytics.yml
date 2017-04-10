@@ -1,0 +1,12 @@
+#
+# google_analytics.yml
+#
+# Config for GA
+#
+#
+ development:
+   tracker_id: UA-xx-1
+ test:
+   tracker_id: UA-xx-1
+ production:
+   tracker_id: UA-xxx-1

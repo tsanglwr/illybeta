@@ -1,0 +1,15 @@
+#
+# mailchimp.yml
+#
+# Config for mailchimp
+#
+#
+development:
+  api_key: ddc9b0d15b59a0f12d419cbd0ce169fb-us10xxx
+  list_id: de23c60d03xxxx
+test:
+  api_key: ddc9b0d15b59a0f12d419cbd0ce169fb-us10xxx
+  list_id: de23c60d03xxxx
+production:
+  api_key: e7284d4d1ebfb914551a91fc11a525b9-us10xxx
+  list_id: de23c60d03xxx

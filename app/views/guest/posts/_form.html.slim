@@ -1,0 +1,61 @@
+= form_for [:guest, @post] do |f|
+  div.row
+    div.col-xs-12.col-sm-offset-3.col-sm-6.codl-md-5.cold-lg-5
+      - if @post.errors.any?
+        div.alert.alert-danger id="error-explanation"
+          =  pluralize(@post.errors.count, "error")
+          = ' '
+          | prohibited this post from being saved:
+          ul
+            = @post.errors.full_messages.each do |message|
+              li
+                = message
+
+      div.panel.panel-default
+        div.panel-body
+
+
+          div.form-group
+            = f.label :name, 'Item name'
+            = ' '
+            small
+              | (required)
+            br
+            = f.text_field :name, :class => 'form-control', :placeholder => 'Your brand or ad name', :required => true
+
+          div.form-group
+            = f.label :banner, 'Photo'
+            = ' '
+            small
+              | (required)
+            br
+            = f.file_field :banner, :class => 'form-control'
+
+          div.form-group
+            = f.label :name, 'Price'
+            = ' '
+            small
+              | (required)
+            br
+            = f.text_field :name, :class => 'form-control', :placeholder => '$ Enter a price', :required => true
+
+          div.form-group
+            = f.label :description
+            = ' '
+            small
+              | (optional)
+            br
+            = f.text_area :description, :class => 'form-control', :placeholder => 'Add a longer description (optional)'
+
+          div.form-group
+            = f.label :logo
+            = ' '
+            small
+              | (optional)
+            br
+            = f.file_field :logo, :class => 'form-control'
+
+          div.row
+            div.cold-xs-12
+              div.actions
+                = f.submit "Start selling", class: 'btn btn-success btn-lg btn-block'

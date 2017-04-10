@@ -1,0 +1,15 @@
+#
+# cdn.yml
+#
+# Config for CDN and asset distribution
+#
+#
+development:
+  cdn_base: https://d3uoa9q2o7k38k.cloudfront.net
+  asset_base: na
+test:
+  cdn_base: https://d3uoa9q2o7k38k.cloudfront.net
+  asset_base: na
+production:
+  cdn_base: https://d3uoa9q2o7k38k.cloudfront.net # cdn_base is a custom accessor
+  asset_base: d3uoa9q2o7k38k.cloudfront.net # asset_base is used by the rails asset engine to redirect requests for assets

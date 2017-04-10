@@ -1,0 +1,7 @@
+.git
+tmp
+Gemfile.lock
+log
+public/assets/
+
+

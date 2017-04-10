@@ -1,0 +1,59 @@
+
+footer.footer
+  br
+  br
+  div.container
+    div.row
+      div.col-md-12
+        div.footer-links.centered
+          = link_to 'About', about_path
+
+          - if Rails.configuration.app[:blog_url]
+            = link_to "Blog" , Rails.configuration.app[:blog_url], :target => "_blank"
+
+          = link_to 'Terms', tos_path
+
+          = link_to 'Privacy Policy', pp_path
+
+          - if Rails.configuration.app[:email]
+            = link_to "Contact Us" , 'mailto:' + Rails.configuration.app[:email]
+
+          - if Rails.configuration.app[:allow_signups]
+            - if user_signed_in?
+
+                = link_to 'Sign out', destroy_user_session_path, :method => 'DELETE'
+
+            - else
+                = link_to 'Login', new_user_session_path
+                = link_to 'Sign up', new_user_registration_path
+          = link_to 'Home', root_path
+
+    div.row
+      div.col-md-12
+        div.centered.social-footer-links
+          br
+          br
+          - if Rails.configuration.app[:twitter_url]
+            = link_to Rails.configuration.app[:twitter_url], :class => 'twitter-color', :target => "_blank" do
+              i.fa.fa-twitter.fa-2x
+
+
+          - if Rails.configuration.app[:facebook_url]
+            = link_to Rails.configuration.app[:facebook_url], :class => 'facebook-color', :target => "_blank" do
+              i.fa.fa-facebook.fa-2x
+
+          - if Rails.configuration.app[:googleplus_url]
+            = link_to Rails.configuration.app[:googleplus_url], :class => 'google-color', :target => "_blank" do
+              i.fa.fa-google.fa-2x
+
+          br
+          br
+
+          span.copyright
+            | &copy;
+            = Rails.configuration.app[:copyright]
+
+        br
+
+  br
+  br

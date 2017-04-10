@@ -1,0 +1,10 @@
+= form_for(:user, :url => registration_path(:user), :class => "form-inline") do |f|
+
+  div.form-group
+    = f.email_field :email,  class: 'form-control input-lg', placeholder: "Email Address", required: true
+
+  div.form-group
+    = f.password_field :password, class: 'form-control input-lg', placeholder: "Password", required: true
+
+  = f.submit "Create Account", class: 'btn btn-success btn-block btn-lg'
+

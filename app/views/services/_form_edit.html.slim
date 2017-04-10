@@ -1,0 +1,40 @@
+= form_tag dashboard_service_path(id: @service.service_uuid, account_uuid: @account_uuid), :method => 'put' do |f|
+
+  - if @service.errors.any?
+    div id="error_explanation"
+      h2
+        = pluralize(@service.errors.count, "error")
+          | prohibited this service from being saved:
+      ul
+        - @service.errors.full_messages.each do |message|
+          = message
+
+  div
+
+    = text_field :service, :name, required: true, class: 'service-name-edit'
+
+  div
+    p
+      | https://
+      = text_field :service, :subdomain, required: true, class: 'service-subdomain-edit'
+      | .api.symmetry.io/v1
+      =>
+      a href="#"
+        | view
+        =>
+        i.fa.fa-caret-down
+  div
+    = text_area :service, :specification, required: true, class: 'service-name-edit', :rows => 20, :cols => 80
+
+  h2
+    | Object strucur
+  div.hide
+    br
+    div id="service_specification_editor"
+
+    = text_area :service, :specification, class: 'hide hidden'
+
+  h1
+    | Models
+  div.actions
+    = submit_tag 'Update Service', class: 'btn btn-success'

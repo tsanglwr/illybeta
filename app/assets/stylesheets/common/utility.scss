@@ -1,0 +1,15 @@
+@import 'common/mixins.scss';
+@import 'common/colors.scss';
+@import 'common/base.scss';
+
+.center-block {
+	margin: 0 auto;
+}
+.centered {
+	text-align: center;
+}
+
+.thin-border {
+  @include border-hairline($colorGrayLighter);
+}
+

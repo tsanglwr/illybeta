@@ -1,0 +1,45 @@
+#
+# app.yml
+#
+# Config for main application settings/social handles/general settings
+#
+#
+development:
+  friendly_name: ilooklikeyou
+  app_name: ilooklikeyou
+  title: ilooklikeyou
+  description: ilooklikeyou
+  twitter_site: "@ilooklikeyou"
+  twitter_creator: "@ilooklikeyou"
+  blog_url:
+  twitter_url: https://twitter.com/ilooklikeyou
+  googleplus_url:
+  facebook_url: https://www.facebook.com/ilooklikeyou
+  email: support@ilooklikeyou.com
+  copyright: ilooklikeyou.com
+test:
+  friendly_name: ilooklikeyou
+  app_name: ilooklikeyou
+  title: ilooklikeyou
+  description: ilooklikeyou
+  twitter_site: "@ilooklikeyou"
+  twitter_creator: "@ilooklikeyou"
+  blog_url: http://blog.ilooklikeyou.com
+  twitter_url: https://twitter.com/ilooklikeyou
+  googleplus_url:
+  facebook_url: https://www.facebook.com/ilooklikeyou
+  email: support@ilooklikeyou.com
+  copyright: ilooklikeyou.com
+production:
+  friendly_name: ilooklikeyou
+  app_name: ilooklikeyou
+  title: ilooklikeyou
+  description: ilooklikeyou
+  twitter_site: "@ilooklikeyou"
+  twitter_creator: "@ilooklikeyou"
+  blog_url: http://blog.ilooklikeyou.com
+  twitter_url: https://twitter.com/ilooklikeyou
+  googleplus_url:
+  facebook_url: https://www.facebook.com/ilooklikeyou
+  email: support@ilooklikeyou.com
+  copyright: ilooklikeyou.com

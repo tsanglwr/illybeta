@@ -1,0 +1,19 @@
+div.container
+  div.row.main-row.center-block
+    div.col-xs-12.col-sm-12.centered
+      h1
+        | Sign in to see your matches!
+      = image_tag @object.image.url(:s)
+      br
+        p
+          br
+          = link_to 'Click here to see your matches', face_match_result_face_matches_path(@face_match_result_id)
+    div.col-xs-12.col-sm-6.col-sm-offset-3.hide
+      div.panel-body
+
+        div.form-group
+          p
+
+            = link_to omniauth_authorize_path(:user, 'facebook'), {:class => "popup btn btn-primary btn-block"}
+              i.fa.fa-facebook>
+              | Sign in with Facebook

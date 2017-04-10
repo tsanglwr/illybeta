@@ -1,0 +1,21 @@
+#
+# oauth.yml
+#
+# Config for oauth signup
+#
+#
+development:
+  facebook_app_id: 1612344705741514
+  facebook_app_key: 37819cf6828a588fccc29f61030af8a1
+  twitter_app_id: abc
+  twitter_app_key: abc
+test:
+  facebook_app_id: 1612344705741514
+  facebook_app_key: 37819cf6828a588fccc29f61030af8a1
+  twitter_app_id: abc
+  twitter_app_key: abc
+production:
+  facebook_app_id: 1612344705741514
+  facebook_app_key: 37819cf6828a588fccc29f61030af8a1
+  twitter_app_id: abc
+  twitter_app_key: abc

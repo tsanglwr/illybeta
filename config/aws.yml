@@ -1,0 +1,15 @@
+#
+# aws.yml
+#
+# Config for AWS
+#
+#
+development:
+  access_key_id:  AKIAJ7ULZY4CA7KGCYPQ
+  secret_access_key: 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
+test:
+  access_key_id:  AKIAJ7ULZY4CA7KGCYPQ
+  secret_access_key: 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
+production:
+  access_key_id:  AKIAJ7ULZY4CA7KGCYPQ
+  secret_access_key: 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

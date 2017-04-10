@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <h1><%=Rails.application.config_for(:app)[:name]%> Setup</h1>
+      <hr/>
+      <%= form_for(setup_user(current_user), :as => 'user', :url => setup_site_path(current_user), :html => {role: 'form', :data => {'parsley-validate' => 'data-parsley-validate', 'parsley-remote' => api_api_setup_sites_validate_url, 'parsley-remote-reverse' => 'true'}}) do |f| %>
+        <% if @show_errors %>
+            <div id="error_explanation">
+              <%= render 'layouts/util/messages' %>
+
+              <% @user.errors.full_messages.each do |msg| %>
+                  <div class="alert alert-danger">
+                    <%= msg %>
+                  </div>
+              <% end %>
+            </div>
+        <% end %>
+
+        <%= f.fields_for :account_manager do |acct_mgr| %>
+
+            <%= acct_mgr.fields_for :account do |acct| %>
+
+                <div class="form-group">
+                  <%= acct.label :site_name, :class => 'label label-default' %>
+                  <div class="input-group">
+                    <%= acct.text_field :site_name, :class => 'form-control', :placeholder => 'Enter an account name', :required => true %>
+                     <span class="input-group-btn">
+                           <button class="btn btn-default" type="button">.<%= Rails.configuration.domain[:tld] %></button>
+                    </span> 
+                  </div>
+                  <p class="help-block">Don't worry, you can change this later.</p>
+                </div>
+
+            <% end %>
+        <% end %>
+
+        <hr/>
+        <div class="actions">
+          <%= f.submit 'Save and continue', :class => 'btn btn-lg btn-primary' %>
+        </div>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

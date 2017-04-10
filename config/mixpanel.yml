@@ -1,0 +1,18 @@
+#
+# mixpanel.yml
+#
+# Config for mixpanel
+#
+#
+development:
+  project_token: xx
+  project_api_key: xx
+  project_api_secret: xx
+test:
+  project_token: xx
+  project_api_key: xx
+  project_api_secret: xx
+production:
+  project_token: xx
+  project_api_key: xx
+  project_api_secret: xx

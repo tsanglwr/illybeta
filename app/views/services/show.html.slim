@@ -1,0 +1,24 @@
+
+p id="notice"
+  = notice
+
+p
+  strong
+    | Name:
+  = @service.name
+
+p
+  strong
+    | Subdomain:
+  = @service.subdomain
+
+p
+  strong
+    | Specification:
+  = @service.specification
+
+
+= link_to 'Edit', edit_dashboard_service_path(@service.service_uuid, account_uuid: @account_uuid )
+| |
+
+= link_to 'Back', dashboard_services_path

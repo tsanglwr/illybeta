@@ -1,0 +1,31 @@
+div.container.hide
+  div.row.main-row.center-block
+    div.col-xs-12.col-sm-12.centered
+      h1
+        | Get ready to view your matches!
+
+      - @face_matches.each do |object|
+        div.row
+          div.col-xs-12
+            = object.score_percent
+            | percent matched for:
+            =>
+            = image_tag object.image.url(:s)
+
+div.container
+  div.row.main-row.center-block
+    div.col-xs-12.col-sm-12.centered
+      h1.hide
+        | Start with the first match!
+      h2
+        | Hang tight!
+      h4
+        | Your photo is being analyzed and results will show here in a few moments.
+      br
+      - image_tag @face_match_result.image.url(:s)
+      iframe width="853" height="480" src="https://www.youtube.com/embed/118IhHzSfoo" frameborder="0"
+
+      br
+      p
+        br
+        = link_to 'Loading...', face_match_result_face_match_path(@face_match_result.id, @face_match_first.id)

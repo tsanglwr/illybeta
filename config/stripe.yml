@@ -1,0 +1,15 @@
+#
+# stripe.yml
+#
+# Stripe configuration
+#
+#
+development:
+  secret_key: abc
+  publishable_key: abc
+test:
+  secret_key: abc
+  publishable_key: abc
+production:
+  secret_key: abc
+  publishable_key: abc

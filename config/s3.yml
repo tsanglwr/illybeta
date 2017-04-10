@@ -1,0 +1,18 @@
+#
+# s3.yml
+#
+# Config for s3 bucket and media storage
+#
+#
+development:
+  general_bucket: illys3
+  media_cdn_bucket: illys3md
+  asset_host: false
+test:
+  general_bucket: illys3
+  media_cdn_bucket: illys3md
+  asset_host: false
+production:
+  general_bucket: illys3
+  media_cdn_bucket: illys3md
+  asset_host: http://i.ilooklikeyoubeta.com

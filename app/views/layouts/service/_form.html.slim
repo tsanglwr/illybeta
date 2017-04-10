@@ -1,0 +1,13 @@
+= form_for(@api, :class=>'form-inline') do |f|
+  div.form-group
+    div.input-group
+      = f.text_field :name, size: "120x10", class: 'form-control input-lg', placeholder: "API Name"
+
+  div.form-group
+    div.input-group
+      = f.text_field :identifier, size: "120x10", class: 'form-control input-lg', placeholder: "Subdomain Path"
+
+      span.input-group-addon.input-lg id="basic-addon1"
+        | .honeyjar.io
+
+  = f.submit "Create API", class: 'btn btn-success btn-block btn-lg'

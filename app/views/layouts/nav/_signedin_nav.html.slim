@@ -1,0 +1,22 @@
+ul.nav.navbar-nav.navbar-right
+  - if user_signed_in?
+    li.dropdown
+      a.dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="false" href="#"
+        i.fa.fa-user
+        =>
+        = current_user.email
+        span.caret
+
+      ul.dropdown-menu role="menu"
+        li.hide
+          = link_to "List services", '/dashboards'
+        li.hide
+          = link_to "View rebounders", '/dashboards'
+        li.hide
+          = link_to "Profile", edit_user_registration_path
+        li.divider
+        li
+          = link_to destroy_user_session_path, :method => :delete do
+            i.fa.fa-signout>
+            | Sign out
+

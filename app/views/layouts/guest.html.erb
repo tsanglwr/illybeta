@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3047795635418011",
+          enable_page_level_ads: true
+      });
+  </script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <%= render 'layouts/util/og_meta' %>
+  <%= stylesheet_link_tag 'guest', params[:controller], media: 'all' %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/third_party_trackers/head_codes' %>
+  <%= render 'layouts/util/favicons' %>
+  <script type="text/javascript">
+      WebFontConfig = {
+          google: { families: [ 'Source+Sans+Pro:400,700,400italic:latin' ] }
+      };
+      (function () {
+          var wf = document.createElement('script');
+          wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                  '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+          wf.type = 'text/javascript';
+          wf.async = 'true';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wf, s);
+      })(); </script>
+</head>
+
+<body>
+
+<main role="main">
+  <div class="hero-banner-wrapper">
+
+    <header class="hide">
+      <%= render 'layouts/guest/guest_navigation' %>
+    </header>
+
+  </div>
+  <div class="container">
+    <%= render 'layouts/util/messages' %>
+    <%= yield %>
+  </div>
+  
+</main>
+
+<%= render "layouts/guest/guest_footer" %>
+
+<%= include_gon %>
+<%= javascript_include_tag 'guest', params[:controller] %>
+
+<%= render 'layouts/third_party_trackers/body_codes' %>
+
+</body>
+</html>

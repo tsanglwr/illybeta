@@ -1,0 +1,1 @@
+var $scJq = jQuery.noConflict(true);

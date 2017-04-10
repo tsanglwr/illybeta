@@ -1,0 +1,36 @@
+#
+# email.yml
+#
+# Emailer settings
+#
+#
+ development:
+   user_name: emailuser
+   password: emailpassword
+   domain: smtp.sendgrid.net
+   from_name: From
+   from_email: someone@example.com
+   reply_to_email: someone@example.com
+   service_email: someone@example.com
+   address: example.com
+   address_port: 587
+ test:
+   user_name: emailuser
+   password: emailpassword
+   domain: smtp.sendgrid.net
+   from_name: From
+   from_email: someone@example.com
+   reply_to_email: someone@example.com
+   service_email: someone@example.com
+   address: example.com
+   address_port: 587   
+ production:
+   user_name: emailuser
+   password: emailpassword
+   domain: smtp.sendgrid.net
+   from_name: From
+   from_email: someone@example.com
+   reply_to_email: someone@example.com
+   service_email: someone@example.com
+   address: example.com
+   address_port: 587 

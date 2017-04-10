@@ -1,0 +1,127 @@
+= form_for [:dashboards, @user] do |f|
+
+  div.row
+    div.col-xs-12
+      - if @user.errors.any?
+        div.alert.alert-danger id="error-explanation" 
+          =  pluralize(@user.errors.count, "error")
+          = ' '
+          | prohibited this user from being saved: 
+          ul
+            = @user.errors.full_messages.each do |message| 
+              li
+                = message
+
+  div.row
+    div.col-xs-12.col-sm-6
+
+      div.form-group
+        = f.label :first_name
+        = ' '
+        small
+          | (required)
+        br
+        = f.text_field :first_name, :class => 'form-control', :required => true
+
+      div.form-group
+        = f.label :last_name
+        = ' '
+        small
+          | (required)
+        br
+        = f.text_field :last_name, :class => 'form-control', :required => true
+
+      div.form-group
+        = f.label :email
+        = ' '
+        small
+          | (required)
+        br
+        = f.text_field :email, :class => 'form-control'
+
+      div.checkbox
+        label
+          = f.check_box :is_email_public
+          | Email is publically accessible on video viewing page
+      div.form-group
+        = f.label :phone
+        = ' '
+        small
+          | (optional)
+        br
+        = f.text_field :phone, :class => 'form-control'
+
+      div.checkbox
+        label
+          = f.check_box :is_phone_public
+          | Phone is publically accessible on video viewing page
+ 
+      div.form-group
+        = f.label :linkedin_url
+        = ' '
+        small
+          | (optional)
+        br
+        = f.url_field :linkedin_url, :class => 'form-control'
+        p.help-block
+          | Example: http://ca.linkedin.com/in/ajames8
+    
+    div.col-xs-12.col-sm-6
+
+      div.form-group
+        = f.label :field_of_study
+        = ' '
+        small
+          | (recommended)
+        br
+        = f.text_field :field_of_study, :class => 'form-control'
+        p.help-block
+          | Example: Bachelor of Arts and Business
+
+      div.form-group
+        = f.label :bio
+        = ' '
+        small
+          | (recommended)
+        br
+        = f.text_area :bio, :class => 'form-control'
+        p.help-block
+          | Example: Users' objective or custom message
+      div.form-group
+        = f.label :image
+        = ' '
+        small
+          | (recommended)
+        br
+        = f.file_field :image, :class => 'form-control'
+        p.help-block
+          | Upload profile photo (PNG, GIF, JPG supported). Recommended size is 300x300.
+        - if !@user.image_file_name.blank?
+          div.thumbnail.profile-image
+            = image_tag(@user.image.url(:s))
+      
+      - if !@user.image.blank?
+        div.checkbox
+          label
+            = f.check_box :remove_image
+            | Remove photo?
+   
+      div.checkbox
+        label
+        = f.check_box :is_profile_hidden
+        i.fa.fa-lock>
+        | Hide this user profile, its videos, and share links from being publically accessible
+ 
+
+
+  div.actions
+    hr
+    = f.submit :class => 'btn btn-primary'
+    - if @user.id
+      div.pull-right
+        = link_to admin_user_path(@user), :class=> 'btn btn-link', :method => :delete, :data => {confirm: 'Are you sure you want to this user and all associated pitch videos?'} do
+          i.fa.fa-trash>
+          | Delete user profile
+    - else
+      = link_to 'Cancel', admin_users_path, :class=>"btn btn-link"
+

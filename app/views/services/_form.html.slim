@@ -1,0 +1,26 @@
+= form_tag dashboard_services_path(account_uuid: @account_uuid) do |f|
+
+  - if @service.errors.any?
+    div id="error_explanation"
+      h2
+        = pluralize(@service.errors.count, "error")
+          | prohibited this service from being saved:
+      ul
+        - @service.errors.full_messages.each do |message|
+          = message
+
+  div
+    = label_tag :service, :name
+    br
+    = text_field :service, :name, required: true
+
+
+  div
+    = label_tag :service, :specification
+    br
+    div id="service_specification_editor"
+
+    = text_area :service, :specification, class: 'hide spec-editor'
+
+  div.actions
+    = submit_tag 'Create Service', class: 'btn btn-success'

@@ -1,0 +1,148 @@
+<project>
+  <actions/>
+  <description/>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>50</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.5">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>git@github.com:cilwaterloo/ic010-frontend.git</url>
+        <credentialsId>atteeela-ssh-username-with-key</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/develop</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>00 00 * * *</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>
+        #!/bin/bash -l env PATH=$PATH:${HOME}/.rvm/bin # Add RVM to PATH for scripting export PATH cd Jumpshot /usr/local/bin/pod install
+      </command>
+    </hudson.tasks.Shell>
+    <au.com.rayh.XCodeBuilder plugin="xcode-plugin@1.4.11">
+      <cleanBeforeBuild>false</cleanBeforeBuild>
+      <cleanTestReports>false</cleanTestReports>
+      <configuration>Debug</configuration>
+      <target/>
+      <sdk>iphonesimulator</sdk>
+      <symRoot/>
+      <configurationBuildDir>${WORKSPACE}/build/binaries</configurationBuildDir>
+      <xcodeProjectPath>Jumpshot</xcodeProjectPath>
+      <xcodeProjectFile/>
+      <xcodebuildArguments/>
+      <xcodeSchema>Jumpshot</xcodeSchema>
+      <xcodeWorkspaceFile>Jumpshot</xcodeWorkspaceFile>
+      <embeddedProfileFile/>
+      <cfBundleVersionValue/>
+      <cfBundleShortVersionStringValue/>
+      <buildIpa>false</buildIpa>
+      <generateArchive>false</generateArchive>
+      <unlockKeychain>true</unlockKeychain>
+      <keychainName>none (specify one below)</keychainName>
+      <keychainPath>${HOME}/Library/Keychains/login.keychain</keychainPath>
+      <keychainPwd>PASSWORDHERE</keychainPwd>
+      <codeSigningIdentity/>
+      <allowFailingBuildResults>false</allowFailingBuildResults>
+      <ipaName/>
+      <ipaOutputDirectory/>
+      <provideApplicationVersion>false</provideApplicationVersion>
+      <changeBundleID>false</changeBundleID>
+      <bundleID/>
+      <bundleIDInfoPlistPath/>
+      <interpretTargetAsRegEx>false</interpretTargetAsRegEx>
+      <ipaManifestPlistUrl/>
+      <signIpaOnXcrun>true</signIpaOnXcrun>
+    </au.com.rayh.XCodeBuilder>
+    <hudson.tasks.Shell>
+      <command>
+        #!/bin/bash -l env source "${HOME}/.bash_profile" export PATH="$PATH:${HOME}/.rvm/bin" # Add RVM to PATH for scripting cd Jumpshot gem install bundler echo `pwd` bundle install xcrun instruments -s devices # Must specify simulator IDs for running in Jenkins: #'iPhone 7 Plus (10.2) [B1670D16-32B7-4B38-BA46-720703E510AE] (Simulator)' APP=${WORKSPACE}/build/binaries/Jumpshot.app DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='B1670D16-32B7-4B38-BA46-720703E510AE' bundle exec cucumber #'iPhone 7 (10.2) [4E9FB67B-1A1A-4BCD-8C94-BE5BE3F59EBE] (Simulator)' APP=${WORKSPACE}/build/binaries/Jumpshot.app DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='4E9FB67B-1A1A-4BCD-8C94-BE5BE3F59EBE' bundle exec cucumber #'iPhone 6s Plus (10.2) [5F33AF14-60D6-4FFA-96E5-86B20988DC3F] (Simulator)' APP=${WORKSPACE}/build/binaries/Jumpshot.app DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='5F33AF14-60D6-4FFA-96E5-86B20988DC3F' bundle exec cucumber #'iPhone 6s (10.2) [F170952C-5F43-4EB7-A3DD-565EBF784482] (Simulator)' APP=${WORKSPACE}/build/binaries/Jumpshot.app DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='F170952C-5F43-4EB7-A3DD-565EBF784482' bundle exec cucumber #'iPhone 6 (10.2) [A7DCFE0F-4D58-4F5D-A282-553183D49066] (Simulator)' APP=${WORKSPACE}/build/binaries/Jumpshot.app DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='A7DCFE0F-4D58-4F5D-A282-553183D49066' bundle exec cucumber #'iPhone 5s (10.2) [A2BEC773-7D16-4644-9946-7B56ED9FFCBC] (Simulator)' APP=${WORKSPACE}/build/binaries/Jumpshot.app DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='A2BEC773-7D16-4644-9946-7B56ED9FFCBC' bundle exec cucumber # Works on command-line but not via Jenkins: #DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='iPhone 7 (10.2) (Simulator)' /usr/local/bin/bundler exec cucumber #DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='iPhone 7 (10.2 Simulator)' /usr/local/bin/bundler exec cucumber #DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='iPhone 7 (10.2 Simulator)' /usr/local/bin/bundler exec cucumber #DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='iPhone 6s (10.2 Simulator)' /usr/local/bin/bundler exec cucumber #DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='iPhone 6 (10.2 Simulator)' /usr/local/bin/bundler exec cucumber #DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 DEVICE_TARGET='iPhone 5s (10.2 Simulator)' /usr/local/bin/bundler exec cucumber # Runs default system simulator: #DEBUG=1 RESET_APP_BETWEEN_SCENARIOS=1 bundle exec cucumber
+      </command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57">
+      <recipientList>$DEFAULT_RECIPIENTS</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern/>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern/>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <attachmentsPattern/>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+      <attachBuildLog>true</attachBuildLog>
+      <compressBuildLog>true</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter/>
+      <externalDelete/>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.18">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>30</timeoutMinutes>
+      </strategy>
+      <operationList/>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+  </buildWrappers>
+</project>

@@ -1,0 +1,28 @@
+#service_specification_editor {
+  width: 700px;
+  height: 500px;
+  margin: 0 auto;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  border: 1px solid #DDD;
+  border-radius: 4px 4px 0px;
+}
+
+.service-name-label {
+  color: #a5a5a5;
+  font-weight: normal;
+}
+
+.service-name-edit {
+  border-width: 0px;
+  border: none;
+  font-size: 24px;
+  outline: none;
+}
+
+.service-subdomain-edit {
+  border-width:0px;
+  border:none;
+}

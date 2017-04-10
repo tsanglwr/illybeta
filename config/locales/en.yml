@@ -1,0 +1,9 @@
+en:
+  hello: "Hello world"
+  active_interaction:
+    errors:
+      models:
+        manage/list_services:
+          attributes:
+            account_uuid:
+              account_not_found: "Account not found"

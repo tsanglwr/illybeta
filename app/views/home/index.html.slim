@@ -1,0 +1,48 @@
+div.container style="background: url(http://static.ilooklikeyou.com/images/map.jpg)"
+  div.row.main-row.center-block
+    div.col-xs-12.col-sm-12.centered
+      br
+      br
+      br
+      br
+      br
+      br
+      br
+      div.jumbo
+        h3 style="background-color: white; padding: 25px; display: inline-block; text-align: center; border: solid 2px #eee; border-radius: 15px; -webkit-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.75); box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.75);"
+          | Each of us has up to 6 look-alikes around the world.
+          br
+          | Are you ready to meet your match?
+          br
+          br
+          div
+            = form_for FaceMatchResult.new, :html => {:class => "form-inline"} do |f|
+              div.form-group
+
+                div.fileUpload.btn.btn-warning.btn-xl
+                  span
+                    | Find Your Match
+                  = f.file_field :image, class: 'upload'
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+  br
+
+div.container.hide
+
+  div.row.hide
+    div.col-xs-12.hide
+      = render 'services/form'
+
+br

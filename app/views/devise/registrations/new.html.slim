@@ -1,0 +1,119 @@
+- if @post_saved
+
+  div.container
+    div.row
+      div.col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+        div.panel.panel-default
+          div.panel-heading
+            div.lead.centered
+              | Sign up for your FREE account
+
+
+
+          div.panel-body
+            = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {'role' => 'form'}) do |f|
+              = devise_error_messages!
+
+
+
+
+              div.form-group
+
+                div.input-group
+                  span.input-group-btn
+                    button.btn.btn-default tabindex="-1" type="button"
+                      i.fa.fa-envelope-o
+                  = f.email_field :email, autofocus: true, tabindex: 1, :class => 'form-control', :placeholder => 'Enter your email', :required => true
+
+              div.form-group
+                div.input-group
+                  span.input-group-btn
+                    button.btn.btn-default tabindex="-1" type="button"
+                      i.fa.fa-key
+
+                  = f.password_field :password, autocomplete: "off", tabindex: 2, :class => 'form-control', :placeholder => 'Enter a password', :required => true
+
+              = f.submit "CREATE ACCOUNT", tabindex: 3, :class => "btn btn-block btn-primary"
+            small.text-muted.centered
+              | By creating an account, you agree to
+              =>
+              = Rails.configuration.app[:name]
+              | 's
+              a href="/terms-of-use" target="_blank"
+                =>
+                | Terms.
+        p.centered
+          | Already have an account?
+          =>
+          = link_to "Sign in here", new_session_path(resource_name)
+
+- else
+
+  div.container
+    div.row
+      div.col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4
+        div.panel.panel-default
+          div.panel-heading
+            div.lead.centered
+              | Create an account for free
+
+   
+          div.panel-body  
+            = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {'role' => 'form'}) do |f|
+                = devise_error_messages!
+
+                div.form-group
+
+                  p
+                    = link_to omniauth_authorize_path(resource_name, 'twitter'), {:class => "hide popup btn btn-info btn-block"}
+                      i.fa.fa-twitter>
+                      | Sign in with Twitter
+
+                    = link_to omniauth_authorize_path(resource_name, 'facebook'), {:class => "popup btn btn-primary btn-block"}
+                      i.fa.fa-facebook>
+                      | Sign in with Facebook
+
+                    = link_to omniauth_authorize_path(resource_name, 'facebook'), {:class => "hide popup btn btn-danger btn-block"}
+                      i.fa.fa-pinterest>
+                      | Sign in with Pinterest
+
+
+
+                  div style="margin-top:25px"
+                    hr style="border:none; height:1px; color:#F4F5F6; background-color:#F4F5F6"
+                    p
+                      div style="margin-top: -32px; text-align: center;"
+                        span style="padding-left: 4px; padding-right: 4px; border-radius: 10px; background-color:#eeeeee"
+                          | OR
+
+
+                  div.input-group
+                    span.input-group-btn
+                      button.btn.btn-default tabindex="-1" type="button"
+                        i.fa.fa-envelope-o
+                    = f.email_field :email, autofocus: true, tabindex: 1, :class => 'form-control', :placeholder => 'Enter your email', :required => true
+
+                div.form-group
+                  div.input-group
+                    span.input-group-btn
+                      button.btn.btn-default tabindex="-1" type="button"
+                        i.fa.fa-key
+
+                    = f.password_field :password, autocomplete: "off", tabindex: 2, :class => 'form-control', :placeholder => 'Enter a password', :required => true
+   
+                = f.submit "CREATE ACCOUNT", tabindex: 3, :class => "btn btn-block btn-default"
+                br
+            small.text-muted.centered.center-block
+              | By creating an account, you agree to
+              =>
+              = Rails.configuration.app[:name]
+              | 's
+              a href="/terms-of-use" target="_blank"
+                =>
+                | Terms.
+   
+        p.centered
+          | Already have an account?
+          =>
+          = link_to "Sign in here", new_session_path(resource_name) 
+ 

@@ -1,0 +1,12 @@
+#
+# domain.yml
+#
+# Config for domain
+#
+#
+development:
+  tld: ilooklikeyoubeta.com
+test:
+  tld: ilooklikeyoubeta.com
+production:
+  tld: ilooklikeyoubeta.com

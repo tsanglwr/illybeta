@@ -1,0 +1,426 @@
+// Mixins and examples
+
+/* Clearfix
+  ========================================================================== */
+
+@mixin clearfix() {
+  & {
+    *zoom: 1;
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/* Usage */
+
+.article {
+  @include clearfix();
+}
+
+/* Box Model
+  ========================================================================== */
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+  -moz-box-sizing: $box-model; // Firefox <= 19
+  box-sizing: $box-model;
+}
+
+/* Usage */
+
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+}
+
+/* Border Radius
+  ========================================================================== */
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box; /* stops bg color from leaking outside the border: */
+}
+
+// Single side border-radius
+
+@mixin border-top-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-bottom-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+/* Usage */
+
+.button {
+  @include border-radius(5px);
+}
+
+.submit-button {
+  @include border-top-radius(10px);
+}
+
+/* Opacity
+  ========================================================================== */
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/* Usage */
+
+.article-heading {
+  @include opacity(0.8);
+}
+
+/* Center-align a block level element
+  ========================================================================== */
+
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Usage */
+
+.footer-wrap {
+  width: 450px;
+  @include center-block;
+}
+
+/* Text overflow
+  ========================================================================== */
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Usage */
+
+.text-truncate {
+  @include text-truncate;
+}
+
+/* Absolute positioned
+  ========================================================================== */
+
+@mixin abs-pos($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+}
+
+/* Usage */
+
+.abs {
+  @include abs-pos(10px, 10px, 5px, 15px);
+}
+
+/* Font Size
+  ========================================================================== */
+
+@mixin font-size($sizeValue: 12) {
+  font-size: $sizeValue + px; //fallback for old browsers
+  font-size: (0.125 * $sizeValue) + rem;
+}
+
+/* Usage */
+
+/*
+body {
+  @include font-size(16);
+}
+*/
+/* Cross browser inline block
+  ========================================================================== */
+
+@mixin inline-block() {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+}
+
+/* Usage */
+
+.icon {
+  @include inline-block();
+}
+
+/* Text replacement (instead of text-indent)
+  ========================================================================== */
+
+@mixin text-replacement() {
+  border: 0;
+  color: transparent;
+  font: 0/0 a;
+  text-shadow: none;
+}
+
+/* Usage */
+
+.header h1 {
+  @include text-replacement();
+}
+
+/* Placeholder
+  ========================================================================== */
+
+@mixin placeholder-color($color) {
+  &.placeholder {
+    color: $color
+  }
+
+  &:-moz-placeholder {
+    color: $color
+  }
+
+  &::-webkit-input-placeholder {
+    color: $color
+  }
+
+  &:-ms-input-placeholder {
+    color: $color
+  }
+}
+
+/* Usage */
+
+input {
+  @include placeholder-color(#FA4A4A)
+}
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin position-absolute($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+@mixin std-margin($incr) {
+  margin: $incr * $std-margin;
+}
+
+@mixin std-vertical-margin($incr) {
+  margin-top: $incr * $std-margin;
+  margin-bottom: $incr * $std-margin;
+}
+
+@mixin std-padding($incr) {
+  padding: $incr * $std-padding;
+}
+
+@mixin std-horizontal-padding($incr) {
+  padding-left: $incr * $std-padding;
+  padding-right: $incr * $std-padding;
+}
+
+@mixin std-vertical-padding($incr) {
+  padding-top: $incr * $std-padding;
+  padding-bottom: $incr * $std-padding;
+}
+
+@mixin horizontal-scroll-wrap {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+@mixin vertical-scroll-wrap {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+@mixin text-shadow($a, $b, $c, $cr, $cg, $cb, $ca) {
+  text-shadow: $a $b $c rgba($cr, $cg, $cb, $ca);
+  -webkit-text-shadow: $a $b $c rgba($cr, $cg, $cb, $ca);
+  -moz-text-shadow: $a $b $c rgba($cr, $cg, $cb, $ca);
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $color;
+    -moz-box-shadow: inset $top $left $blur $color;
+    box-shadow: inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin v-center-parent {
+  position: relative;
+}
+
+@mixin v-center-child {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%)
+}
+
+@mixin vh-center-parent {
+  position: relative;
+}
+
+@mixin vh-center-child {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+@mixin border-hairline($c) {
+  height: 1px;
+  background-color: $c;
+  content: '';
+  width: 100%;
+  display: block;
+}
+
+@mixin std-margin($incr) {
+  margin: $incr * $std-margin;
+}
+
+@mixin std-vertical-margin($incr) {
+  margin-top: $incr * $std-margin;
+  margin-bottom: $incr * $std-margin;
+}
+
+@mixin std-padding($incr) {
+  padding: $incr * $std-padding;
+}
+
+@mixin std-horizontal-padding($incr) {
+  padding-left: $incr * $std-padding;
+  padding-right: $incr * $std-padding;
+}
+
+@mixin std-vertical-padding($incr) {
+  padding-top: $incr * $std-padding;
+  padding-bottom: $incr * $std-padding;
+}
+
+@mixin horizontal-scroll-wrap {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+@mixin vertical-scroll-wrap {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+@mixin text-shadow($a, $b, $c, $cr, $cg, $cb, $ca) {
+  text-shadow: $a $b $c rgba($cr, $cg, $cb, $ca);
+  -webkit-text-shadow: $a $b $c rgba($cr, $cg, $cb, $ca);
+  -moz-text-shadow: $a $b $c rgba($cr, $cg, $cb, $ca);
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: inset $top $left $blur $color;
+    -moz-box-shadow: inset $top $left $blur $color;
+    box-shadow: inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin vh-center-parent {
+  position: relative;
+}
+
+@mixin vh-center-child {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+} 
+
+
+

@@ -1,0 +1,70 @@
+@import 'common/base.scss';
+@import 'common/colors.scss';
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+.footer {
+  margin-top: 2*$std-margin;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 767px) {
+
+  body {
+    margin-bottom: 400px;
+    min-height: 100%;
+  }
+  .footer {
+    height: 380px;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+  body {
+    margin-bottom: 200px;
+    min-height: 100%;
+  }
+  .footer {
+    height: 200px;
+  }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+  body {
+    margin-bottom: 200px;
+    min-height: 100%;
+  }
+  .footer {
+    height: 200px;
+  }
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  body {
+    margin-bottom: 200px;
+    min-height: 100%;
+  }
+  .footer {
+    height: 200px;
+  }
+
+}
+

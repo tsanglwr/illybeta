@@ -1,0 +1,12 @@
+#
+# apiservice_connection.yml
+#
+# Configuration for main app api service backing the current app
+#
+#
+development:
+  url:  http://127.0.0.1:8090
+test:
+  url:  http://127.0.0.1:8090
+production:
+  url:  http://127.0.0.1:8090
